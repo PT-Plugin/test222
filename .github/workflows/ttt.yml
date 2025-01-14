@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
-          ref: ${{ github.event.pull_request.merge_commit_sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: check for mergeability
         if: github.event_name == 'pull_request_target'
@@ -64,8 +64,8 @@ jobs:
       - run: |
           git config user.email github-actions[bot]@users.noreply.github.com
           git config user.name github-actions[bot]
-          touch a
-            git add a
+          echo abc>>bb
+            git add bb
             git commit -m "test"
             git log --name-status HEAD^..HEAD
             if ! git push
